@@ -1,5 +1,6 @@
 {
   "name": "canadian-wealth",
+  "homepage": "https://emmanuelpali.github.io/movies",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -13,10 +14,10 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "build": "react-scripts build"    
   },
   "eslintConfig": {
     "extends": [
@@ -38,6 +39,7 @@
   },
   "devDependencies": {
     "axios": "^1.4.0",
+    "gh-pages": "^5.0.0",
     "react-router-dom": "^6.11.1"
   }
 }
