@@ -1,19 +1,17 @@
 
 import React, { useState, useEffect, useContext } from 'react'
 import Movie from './Movie';
-
+// using context to persist data
 import { MovieContext } from '../MovieContext';
-
-
 
 export default function Home() {
     const {movies, setMovies, getMovies} = useContext(MovieContext);
     const [searchTerm, setSearchTerm] = useState('');
      useEffect(() => {        
             if(searchTerm !== ''){
-              setMovies((prevMovies) => prevMovies.filter((movie) => movie.titleText.text.toLowerCase().includes(searchTerm))); 
+              setMovies((movies) => movies.filter((movie) => movie.titleText.text.toLowerCase().includes(searchTerm))); 
             }     
-      }, [searchTerm, setMovies]); 
+      }, [searchTerm]); 
       
       const clearSearch = () => {
         setSearchTerm(``);
@@ -29,9 +27,11 @@ export default function Home() {
                 <button className='btn btn-primary h-50 d-inline-block col-md-2 ms-2' type='button' onClick={clearSearch}>Clear</button>
             </div>
             {<div className='row main mx-auto'>     
-            {movies.map((movie) => (
+            {searchTerm !== '' && movies.length === 0 ? <h3>Sorry, no match found</h3> : (
+              movies.map((movie) => (
                 <Movie key={movie.id} className='mx-auto' movie={movie}/>
-            ))}
+            ))
+            )}
           </div>}          
         </div>
       );

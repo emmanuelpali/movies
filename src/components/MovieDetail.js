@@ -29,11 +29,17 @@ const {id} = useParams();
   if (!movie) {
     return <div className='loader_container'><span className='loader'></span></div>;
   }
-
+  if (movie.length === 0) {
+    return <div className='container-fluid row col-md-8 mx-auto my-5'>
+        <h3>Sorry can't find movie details at the moment</h3>
+        <Link className='btn btn-outline-primary col-md-3 my-3' to="/">Return Home</Link>
+      </div>;
+  }
+  else{
   return (
-    <div className='container-fluid row col-md-8 mx-auto mt-4 single_movie'>
+      <div className='container-fluid row col-md-8 mx-auto mt-4 single_movie'>
       <h1 className='card-title text-center my-5'>{movie.title}</h1>
-      <div className="single_image_container">
+      <div className="single_image_container mx-auto">
         <img className='card-img-top col-md-4' src={movie.image_url} alt={movie.title} />
       </div>
       <div className='card-body large-shadow col-md-6'>
@@ -45,4 +51,4 @@ const {id} = useParams();
       </div>
     </div>
   );
-}
+}}
