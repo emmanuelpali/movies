@@ -33,12 +33,12 @@ console.log(id);
   }
 
   return (
-    <div className='row col-md-8 mx-auto mt-4 single_movie'>
-      <h1 className='card-title my-3'>{movie.title}</h1>
+    <div className='container-fluid row col-md-8 mx-auto mt-4 single_movie'>
+      <h1 className='card-title text-center my-5'>{movie.title}</h1>
       <div className="image_container">
       <img className='card-img-top shadow col-4' src={movie.image_url} alt={movie.title} />
       </div>
-      <div className='card-body col-md-4'>
+      <div className='card-body large-shadow col-md-4'>
       <h2 className='card-text '>Description</h2>
       <p className='card-text lh-base'>{movie.description}</p>
       <p className='card-text'>Release Year: {movie.year}</p>

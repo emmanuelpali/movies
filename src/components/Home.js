@@ -40,16 +40,16 @@ export default function Home() {
       }
 
     return (
-        <div className='container'>
-          <h2 className='text-center m-5'>Popular Movies</h2>
+        <div className='container-fluid'>
+          <h1 className='text-center m-5'>Popular Movies</h1>
           <button className='btn btn-outline-primary d-block mx-auto mb-3' onClick={getMovies}>Fetch Movies</button>
           <div className='text-center mx-auto mb-3 col-4'>
                 <input className='form-control mb-3' type='text' placeholder='Search' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}/>
                 <button className='btn btn-primary' type='button' onClick={clearSearch}>Clear</button>
             </div>
-            <div className='row'>     
+            <div className='row d-flex justify-content-center main mx-auto'>     
             {movies.map((movie) => (
-                <Movie className="card" key={movie.imdb_id}  movie={movie}/>
+                <Movie key={movie.imdb_id}  movie={movie}/>
             ))}
           </div>          
         </div>
