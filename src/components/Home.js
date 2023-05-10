@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect, useContext } from 'react'
 import Movie from './Movie';
-// using context to persist data
+// using context to persist fetched movies
 import { MovieContext } from '../MovieContext';
 
 export default function Home() {
@@ -16,6 +16,9 @@ export default function Home() {
       const clearSearch = () => {
         setSearchTerm(``);
         getMovies();
+      }
+      if (!movies) {
+        return <div className='loader_container'><span className='loader'></span></div>;
       }
 
     return (
