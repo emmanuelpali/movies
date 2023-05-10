@@ -1,41 +1,22 @@
-import axios from 'axios';
-import React, { useState, useEffect } from 'react'
+
+import React, { useState, useEffect, useContext } from 'react'
 import Movie from './Movie';
+
+import { MovieContext } from '../MovieContext';
 
 
 
 export default function Home() {
-    const [movies, setMovies] = useState([]);
+    const {movies, setMovies, getMovies} = useContext(MovieContext);
     const [searchTerm, setSearchTerm] = useState('');
-    const apiKey = process.env.REACT_APP_RapidAPI;
-    const options = {
-        method: 'GET',
-        url: 'https://moviesminidatabase.p.rapidapi.com/movie/order/byPopularity/',
-        headers: {
-          'X-RapidAPI-Key': `${apiKey}`,
-          'X-RapidAPI-Host': 'moviesminidatabase.p.rapidapi.com'
-        }
-      };
-      
-
-    const  getMovies = async () => {
-       try{
-        const response = await axios.request(options)
-        setMovies(response.data.results)
-        console.log((response.data));
-        }
-       catch(err) {
-        console.log(err);
-       }
-    }
-     // Search functionality 
      useEffect(() => {        
-            setMovies(movies.filter(movie => movie.title.toLowerCase().includes(searchTerm)));      
-      }, [searchTerm]); 
+            if(searchTerm !== ''){
+              setMovies((prevMovies) => prevMovies.filter((movie) => movie.titleText.text.toLowerCase().includes(searchTerm))); 
+            }     
+      }, [searchTerm, setMovies]); 
       
       const clearSearch = () => {
         setSearchTerm(``);
-        setMovies([]);
         getMovies();
       }
 
@@ -43,15 +24,15 @@ export default function Home() {
         <div className='container-fluid'>
           <h1 className='text-center m-5'>Popular Movies</h1>
           <button className='btn btn-outline-primary d-block mx-auto mb-3' onClick={getMovies}>Fetch Movies</button>
-          <div className='text-center mx-auto mb-3 col-4'>
-                <input className='form-control mb-3' type='text' placeholder='Search' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}/>
-                <button className='btn btn-primary' type='button' onClick={clearSearch}>Clear</button>
+          <div className='mx-auto mb-3 col-6 d-flex justify-content-center'>
+                <input className='form-control mb-3 col-6' type='text' placeholder='Search' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}/>
+                <button className='btn btn-primary h-50 d-inline-block col-md-2 ms-2' type='button' onClick={clearSearch}>Clear</button>
             </div>
-            <div className='row d-flex justify-content-center main mx-auto'>     
+            {<div className='row main mx-auto'>     
             {movies.map((movie) => (
-                <Movie key={movie.imdb_id}  movie={movie}/>
+                <Movie key={movie.id} className='mx-auto' movie={movie}/>
             ))}
-          </div>          
+          </div>}          
         </div>
       );
 }

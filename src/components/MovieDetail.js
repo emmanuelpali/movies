@@ -7,7 +7,6 @@ export default function MovieDetail() {
   const [movie, setMovie] = useState(null);
   const apiKey = process.env.REACT_APP_RapidAPI;
 const {id} = useParams();
-console.log(id);
 
   const options = {
     method: 'GET',
@@ -22,23 +21,22 @@ console.log(id);
     const fetchData = async () => {
       const response = await axios.request(options);
       setMovie(response.data.results);
-      console.log(response.data);
     };
 
     fetchData();
   }, [id]);
 
   if (!movie) {
-    return <div>Loading...</div>;
+    return <div className='loader_container'><span className='loader'></span></div>;
   }
 
   return (
     <div className='container-fluid row col-md-8 mx-auto mt-4 single_movie'>
       <h1 className='card-title text-center my-5'>{movie.title}</h1>
-      <div className="image_container">
-      <img className='card-img-top shadow col-4' src={movie.image_url} alt={movie.title} />
+      <div className="single_image_container">
+        <img className='card-img-top col-md-4' src={movie.image_url} alt={movie.title} />
       </div>
-      <div className='card-body large-shadow col-md-4'>
+      <div className='card-body large-shadow col-md-6'>
       <h2 className='card-text '>Description</h2>
       <p className='card-text lh-base'>{movie.description}</p>
       <p className='card-text'>Release Year: {movie.year}</p>
