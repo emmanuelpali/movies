@@ -9,7 +9,7 @@ export default function Home() {
     const [searchTerm, setSearchTerm] = useState('');
      useEffect(() => {        
             if(searchTerm !== ''){
-              setMovies((movies) => movies.filter((movie) => movie.titleText.text.toLowerCase().includes(searchTerm))); 
+              setMovies((movies) => movies.filter((movie) => movie.titleText.text.toLowerCase().includes(searchTerm.toLowerCase()))); 
             }     
       }, [searchTerm]); 
       
