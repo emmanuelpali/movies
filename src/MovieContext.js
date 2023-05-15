@@ -9,6 +9,10 @@ const MovieContextProvider = ({ children }) => {
     const options = {
       method: 'GET',
       url: 'https://moviesdatabase.p.rapidapi.com/titles',
+      params: {
+        year: '2022',
+        endYear: '2023'
+      },
       headers: {
         'X-RapidAPI-Key': `${apiKey}`,
         'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
