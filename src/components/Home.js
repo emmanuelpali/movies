@@ -10,6 +10,8 @@ export default function Home() {
      useEffect(() => {        
             if(searchTerm !== ''){
               setMovies((movies) => movies.filter((movie) => movie.titleText.text.toLowerCase().includes(searchTerm.toLowerCase()))); 
+            }else {
+              getMovies();
             }     
       }, [searchTerm]); 
       

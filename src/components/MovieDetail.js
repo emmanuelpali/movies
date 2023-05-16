@@ -8,19 +8,21 @@ export default function MovieDetail() {
   const apiKey = process.env.REACT_APP_RapidAPI;
 const {id} = useParams();
 
-  const options = {
-    method: 'GET',
-    url: `https://moviesminidatabase.p.rapidapi.com/movie/id/${id}/`,
-    headers: {
-      'X-RapidAPI-Key': `${apiKey}`,
-      'X-RapidAPI-Host': 'moviesminidatabase.p.rapidapi.com'
-    }
-  };
+const options = {
+  method: 'GET',
+  url: `https://moviesdatabase.p.rapidapi.com/titles/${id}`,
+  params: {info: 'base_info'},
+  headers: {
+    'X-RapidAPI-Key': `${apiKey}`,
+    'X-RapidAPI-Host': 'moviesdatabase.p.rapidapi.com'
+  }
+};
 
   useEffect(() => {
     const fetchData = async () => {
       const response = await axios.request(options);
       setMovie(response.data.results);
+      console.log(movie);
     };
 
     fetchData();
@@ -40,13 +42,13 @@ const {id} = useParams();
       <div className='container-fluid row col-md-8 mx-auto mt-4 single_movie'>
       <h1 className='card-title text-center my-5'>{movie.title}</h1>
       <div className="single_image_container mx-auto">
-        <img className='card-img-top col-md-4' src={movie.image_url} alt={movie.title} />
+        <img className='card-img-top col-md-4' src={movie.primaryImage.url} alt={movie.primaryImage.caption.plainText} />
       </div>
       <div className='card-body large-shadow col-md-6'>
-      <h2 className='card-text '>Description</h2>
-      <p className='card-text lh-base'>{movie.description}</p>
-      <p className='card-text'>Release Year: {movie.year}</p>
-      <p className='card-text'>Rating: {movie.rating}</p>
+      <h2 className='card-text '>Plot</h2>
+      <p className='card-text lh-base'>{movie.plot.plotText.plainText}</p>
+      <p className='card-text'>Release Year: {movie.releaseYear.year}</p>
+      {movie.ratingsSummary.aggregateRating && <p className='card-text'>Rating: {movie.ratingsSummary.aggregateRating}</p> }
       <Link className='btn btn-outline-primary col-md-3' to="/">Home</Link>
       </div>
     </div>
