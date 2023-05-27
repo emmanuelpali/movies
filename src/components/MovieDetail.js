@@ -40,7 +40,7 @@ const options = {
   else{
   return (
       <div className='container-fluid row col-md-8 mx-auto mt-4 single_movie'>
-      <h1 className='card-title text-center my-5'>{movie.title}</h1>
+      {movie.originalTitleText && <h1 className='text-center mt-2'>{movie.originalTitleText.text}</h1>}
       <div className="single_image_container mx-auto">
         <img className='card-img-top col-md-4' src={movie.primaryImage.url} alt={movie.primaryImage.caption.plainText} />
       </div>

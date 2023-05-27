@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 export default function Movie({ movie }) {
   return (
     <>
-      <div className='large-shadow card-dark align-center col-md-4 my-5 mx-5 p-5'>
+      <div className='my_card large-shadow card-dark align-center col-md-4 my-5 mx-5 p-5'>
         <div className="image_container mx-auto">
         {movie.primaryImage ? <img className='card-img-top' src={movie.primaryImage.url} alt={movie.titleText.text} />: movie.titleText.text}
         </div>

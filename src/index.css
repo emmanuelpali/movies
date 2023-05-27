@@ -25,6 +25,13 @@ code {
   padding: 0;
 }
 
+.my_card {
+  background: #000000; 
+	background: linear-gradient(to bottom, #353d36, #000000);
+  border-top-left-radius: 50px;
+  border-bottom-left-radius: 50px;
+}
+
 .single_image_container{
   height: 400px;
   width: 300px;
@@ -47,16 +54,37 @@ code {
   height: 100%;
 }
 
-a .btn {
+.btn {
+  color: chocolate;
+  outline: none;
+  background: #1a1d1a;
+  border: none;
+}
+
+a .btn, .card-body a  {
   text-decoration: none;
   border-bottom: 1px solid chocolate;
   color: chocolate;
-  padding-left: 0;
+	border: none;
+	padding: 10px;
+	outline: none;
+	margin-top: 30px;
+	margin-left: 10px;
+	background: #1a1d1a;
+	border-radius: 8px;
+	-webkit-box-shadow: 0 0 20px rgba(0,0,0,0.2);
+	        box-shadow: 0 0 20px rgba(0,0,0,0.2);
+	-webkit-transition: 300ms ease-in-out;
+	-o-transition: 200ms ease-in-out;
+	transition: 200ms ease-in-out;
 }
 
-a .btn:hover {
+ .btn:hover, .card-body a:hover {
   color: chartreuse;
-  transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  -ms-transform: scale(1.1);
+      transform: scale(1.1);
+      background: #1a1d1a;
 }
 
 /*
