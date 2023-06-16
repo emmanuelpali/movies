@@ -1,10 +1,12 @@
 
 import React, { useState, useEffect, useContext } from 'react'
 import Movie from './Movie';
+import { motion, useScroll } from "framer-motion";
 // using context to persist fetched movies
 import { MovieContext } from '../MovieContext';
 
 export default function Home() {
+  const { scrollYProgress } = useScroll();
     const {movies, setMovies, getMovies} = useContext(MovieContext);
     const [searchTerm, setSearchTerm] = useState('');
      useEffect(() => {        
@@ -24,7 +26,13 @@ export default function Home() {
       }
 
     return (
+      <>
+        <motion.div
+              className="progress-bar"
+              style={{ scaleX: scrollYProgress }}
+            />
         <div className='container-fluid'>
+          
           <h1 className='text-center m-5'>Popular Movies</h1>
           <button className='btn btn-outline-primary d-block mx-auto mb-3' onClick={getMovies}>Fetch Movies</button>
           <div className='mx-auto mb-3 col-6 d-flex justify-content-center'>
@@ -39,5 +47,6 @@ export default function Home() {
             )}
           </div>}          
         </div>
+        </>
       );
 }

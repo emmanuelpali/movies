@@ -6,6 +6,7 @@ export default function Movie({ movie }) {
   return (
     <>
       <Reveal >
+        <div className="circle"></div>
         <div className="image_container mx-auto">
         {movie.primaryImage ? <img className='card-img-top' src={movie.primaryImage.url} alt={movie.titleText.text} />: movie.titleText.text}
         </div>
