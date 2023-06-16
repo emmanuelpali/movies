@@ -82,7 +82,7 @@ code {
   border: none;
 }
 
-a .btn, .card-body a  {
+a .btn, .card-body a, .btn:active  {
   text-decoration: none;
     background: radial-gradient(rgba(176, 230, 51, 0.5), rgba(83, 239, 125, 0.5));
   border-bottom: 1px solid chocolate;
@@ -128,6 +128,7 @@ Loader styles
 
 .progress-bar {
   position: fixed;
+  z-index: 1000;
   top: 0;
   left: 0;
   right: 0;

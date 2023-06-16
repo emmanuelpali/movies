@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useEffect, useContext } from 'react'
 import Movie from './Movie';
 import { motion, useScroll } from "framer-motion";
 // using context to persist fetched movies
@@ -7,15 +7,21 @@ import { MovieContext } from '../MovieContext';
 
 export default function Home() {
   const { scrollYProgress } = useScroll();
-    const {movies, setMovies, getMovies} = useContext(MovieContext);
-    const [searchTerm, setSearchTerm] = useState('');
-     useEffect(() => {        
-            if(searchTerm !== ''){
-              setMovies((movies) => movies.filter((movie) => movie.titleText.text.toLowerCase().includes(searchTerm.toLowerCase()))); 
-            }else {
-              getMovies();
-            }     
-      }, [searchTerm]); 
+    const {movies,  getMovies, searchTerm, setSearchTerm, searchMovies} = useContext(MovieContext);
+     
+  useEffect(() => {
+    const debounceTimer = setTimeout(() => {
+      if (searchTerm !== '') {
+        searchMovies();
+      } else {
+        getMovies();
+      }
+    }, 1000);
+
+    return () => {
+      clearTimeout(debounceTimer);
+    };
+  }, [searchTerm]);
       
       const clearSearch = () => {
         setSearchTerm(``);
@@ -33,11 +39,11 @@ export default function Home() {
             />
         <div className='container-fluid'>
           
-          <h1 className='text-center m-5'>Popular Movies</h1>
-          <button className='btn btn-outline-primary d-block mx-auto mb-3' onClick={getMovies}>Fetch Movies</button>
+          <h1 className='text-center m-5'>Recent Movies</h1>
+          <button className='btn d-block mx-auto mb-3' onClick={getMovies}>Fetch Movies</button>
           <div className='mx-auto mb-3 col-6 d-flex justify-content-center'>
                 <input className='form-control mb-3 col-6' type='text' placeholder='Search' value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)}/>
-                <button className='btn btn-primary h-50 d-inline-block col-md-2 ms-2' type='button' onClick={clearSearch}>Clear</button>
+                <a className='btn btn-primary h-50 d-inline-block col-md-2 ms-2' type='a' onClick={clearSearch}>Clear</a>
             </div>
             {<div className='row main mx-auto'>     
             {searchTerm !== '' && movies.length === 0 ? <h3>Sorry, no match found</h3> : (
