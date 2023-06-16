@@ -84,7 +84,7 @@ code {
 
 a .btn, .card-body a, .btn:active  {
   text-decoration: none;
-    background: radial-gradient(rgba(176, 230, 51, 0.5), rgba(83, 239, 125, 0.5));
+  background: radial-gradient(rgba(10, 10, 10, 0.5), rgba(83, 239, 125, 0.1));
   border-bottom: 1px solid chocolate;
   color: radial-gradient(#b0e633, #53ef7d);
 	border: none;
@@ -92,7 +92,6 @@ a .btn, .card-body a, .btn:active  {
 	outline: none;
 	margin-top: 30px;
 	margin-left: 10px;
-	background: #1a1d1a;
 	border-radius: 8px;
 	-webkit-box-shadow: 0 0 20px rgba(0,0,0,0.2);
 	        box-shadow: 0 0 20px rgba(0,0,0,0.2);
